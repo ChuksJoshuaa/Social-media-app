@@ -1,6 +1,6 @@
 # SOCIAL MEDIA APP
 
-<img src="https://res.cloudinary.com/chuksmbanaso/image/upload/v1651368416/media/Screenshot_62_xklro5.png" title="Social media app" alt="Social media app">.
+<img src="https://res.cloudinary.com/chuksmbanaso/image/upload/v1651368416/media/Screenshot_62_xklro5.png" title="Social media app" alt="Social media app">..
 
 <img src="https://res.cloudinary.com/chuksmbanaso/image/upload/v1651368471/media/Screenshot_61_vshkvc.png" title="Social media app" alt="Social media app">.
 
