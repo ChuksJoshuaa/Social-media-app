@@ -56,11 +56,9 @@ const Auth = () => {
   const googleSuccess = async (res) => {
     //res is response
     let decoded = res;
-    console.log(decoded);
 
     //Credential is the same as token
     const result = jwt_decode(decoded.credential);
-    console.log(result?.sub.length);
 
     const token = decoded?.credential;
 
