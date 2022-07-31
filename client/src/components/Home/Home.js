@@ -9,7 +9,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation, Redirect } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import ChipInput from "material-ui-chip-input";
 import { getPostsBySearch } from "../../actions/posts";
 import useStyles from "./styles";
