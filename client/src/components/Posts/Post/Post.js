@@ -58,7 +58,8 @@ const Post = ({ post, setCurrentId }) => {
       ) : (
         <div style={{ fontSize: "0.9em", textTransform: "capitalize" }}>
           <ThumbUpAltOutlined style={{ fontSize: "1em" }} />
-          &nbsp;{post.likes.length} {post.likes.length === 1 ? "Like" : "likes"}
+          &nbsp;{post.likes.length}{" "}
+          {post.likes.length || likes.length === 1 ? "Like" : "likes"}
         </div>
       );
     }
