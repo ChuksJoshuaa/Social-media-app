@@ -7,7 +7,8 @@ import {
   Typography,
   Container,
 } from "@material-ui/core";
-import { GoogleLogin } from "react-google-login";
+// import { GoogleLogin } from "react-google-login";
+import { GoogleLogin } from "@react-oauth/google";
 import { useHistory } from "react-router-dom";
 import useStyles from "./styles";
 import Input from "./Input";
@@ -16,6 +17,7 @@ import { useDispatch } from "react-redux";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { AUTH } from "../../contants/actionTypes";
 import { signin, signup } from "../../actions/auth";
+import jwt_decode from "jwt-decode";
 
 const initialState = {
   firstName: "",
@@ -52,8 +54,15 @@ const Auth = () => {
     setShowPassword(false);
   };
   const googleSuccess = async (res) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
+    //res is response
+    let decoded = res;
+    console.log(decoded);
+
+    //Credential is the same as token
+    const result = jwt_decode(decoded.credential);
+    console.log(result?.sub.length);
+
+    const token = decoded?.credential;
 
     try {
       dispatch({ type: AUTH, data: { result, token } });
@@ -125,7 +134,7 @@ const Auth = () => {
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
           <GoogleLogin
-            clientId="879383614385-s69lp1411pfvbsn3i1jlno79lfrlnqq4.apps.googleusercontent.com"
+            // clientId="879383614385-s69lp1411pfvbsn3i1jlno79lfrlnqq4.apps.googleusercontent.com"
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}
@@ -140,8 +149,8 @@ const Auth = () => {
               </Button>
             )}
             onSuccess={googleSuccess}
-            onFailure={googleFailure}
-            cookiePolicy="single_host_origin"
+            onError={googleFailure}
+            // cookiePolicy="single_host_origin"
           />
         </form>
         <Grid container justifyContent="flex-end">

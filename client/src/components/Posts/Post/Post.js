@@ -25,7 +25,9 @@ const Post = ({ post, setCurrentId }) => {
   // <span>{moment(date).format("dddd Do, YYYY")}</span>;
   const dispatch = useDispatch();
   const [likes, setLikes] = useState(post?.likes);
-  const userId = user?.result?.googleId || user?.result?._id;
+
+  //sub is the same as googleId
+  const userId = user?.result?.sub || user?.result?._id;
 
   const hasLikedPost = post.likes.find((like) => like === userId);
 

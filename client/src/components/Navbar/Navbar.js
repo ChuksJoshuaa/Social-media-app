@@ -7,6 +7,7 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
 import { LOGOUT } from "../../contants/actionTypes";
+import { googleLogout } from "@react-oauth/google";
 
 const Navbar = () => {
   const classes = useStyles();
@@ -17,6 +18,7 @@ const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
   const Logout = () => {
+    googleLogout();
     dispatch({ type: LOGOUT });
 
     history.push("/");
@@ -50,7 +52,7 @@ const Navbar = () => {
             <Avatar
               className={classes.purple}
               alt={user.result.name}
-              src={user.result.imageUrl}
+              src={user.result.imageUrl || user.result.picture}
             >
               {user.result.name.charAt(0)}
             </Avatar>
@@ -67,7 +69,11 @@ const Navbar = () => {
             </Button>
           </div>
         ) : (
-          <Link to="/auth" target="_blank" style={{ textDecoration: "none" }}>
+          <Link
+            to="/auth"
+            style={{ textDecoration: "none" }}
+            onClick={() => (window.location.href = "/auth")}
+          >
             <Button variant="contained" color="primary">
               Sign in
             </Button>
