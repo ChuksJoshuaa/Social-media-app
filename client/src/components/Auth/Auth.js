@@ -22,6 +22,7 @@ import jwt_decode from "jwt-decode";
 const initialState = {
   firstName: "",
   lastName: "",
+  phoneNumber: "",
   email: "",
   password: "",
   comfirmPassword: "",
@@ -97,6 +98,11 @@ const Auth = () => {
                   label="Last Name"
                   handleChange={handleChange}
                   half
+                />
+                <Input
+                  name="phoneNumber"
+                  label="Phone Number"
+                  handleChange={handleChange}
                 />
               </>
             )}
