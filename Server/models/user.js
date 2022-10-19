@@ -7,6 +7,13 @@ const userSchema = mongoose.Schema({
     maxLength: 50,
     minlength: 3,
   },
+  mobile: {
+    type: String,
+    required: [true, "please provide number"],
+    maxLength: 50,
+    minlength: 3,
+    unique: true,
+  },
   email: {
     type: String,
     required: [true, "please provide email"],

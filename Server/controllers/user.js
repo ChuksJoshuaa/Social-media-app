@@ -41,11 +41,16 @@ export const signin = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
-  const { email, password, comfirmPassword, firstName, lastName } = req.body;
+  const { email, password, comfirmPassword, firstName, lastName, phoneNumber } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
+    const existingPhone = await User.findOne({ mobile });
     if (existingUser) {
+      return res.status(400).json({ msg: "User already exists" });
+    }
+
+    if (existingPhone) {
       return res.status(400).json({ msg: "User already exists" });
     }
 
@@ -58,6 +63,7 @@ export const signup = async (req, res) => {
     const result = await User.create({
       email,
       password: hashedPassword,
+      mobile: phoneNumber,
       name: `${firstName} ${lastName}`,
     });
 
